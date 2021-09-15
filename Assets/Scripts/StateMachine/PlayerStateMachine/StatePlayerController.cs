@@ -71,6 +71,7 @@ public class StatePlayerController : MonoBehaviour
     {
         playerId = 0;
         player = ReInput.players.GetPlayer(playerId);
+        player.controllers.hasKeyboard = true;
         gameManager = FindObjectOfType<GameManager>();
         rb = GetComponent<Rigidbody2D>();
         playerManager = GetComponent<PlayerManager>();
@@ -152,6 +153,7 @@ public class StatePlayerController : MonoBehaviour
     {
         moveInput = player.GetAxis2D("MoveHorizontal", "MoveVertical");
         if (rb != null) {
+            Debug.Log(moveInput.x);
             float xVelocity = CalculatePlayerVelocity(rb.velocity.x, moveInput, moveSpeed, velocityXSmoothing, accelerationTimeGrounded, accelerationTimeAirborne, isGrounded);
             rb.velocity = new Vector2(xVelocity, rb.velocity.y);
         }

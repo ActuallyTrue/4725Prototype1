@@ -28,6 +28,7 @@ public class PlayerIdleState : PlayerState {
         
         if (stateInput.player.GetButtonDown("Jump") && stateInput.playerController.isGrounded)
         {
+            stateInput.gameManager.GetStateInput().gameManagerController.recordJump(stateInput.playerController.transform.position);
             stateInput.playerController.Jump();
             character.ChangeState<PlayerJumpingState>();
         } else if((stateInput.rb.velocity.y < 0) && !stateInput.playerController.isGrounded)

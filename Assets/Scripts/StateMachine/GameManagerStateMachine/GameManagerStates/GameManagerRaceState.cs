@@ -5,25 +5,26 @@ using UnityEngine;
 public class GameManagerRaceState : GameManagerState
 {
 
-    public float countdownTimer;
-    private float countdownTime = 30;
-
     public bool raceWon;
     public override void Enter(GameManagerStateInput stateInput, CharacterStateTransitionInfo transitionInfo = null)
     {
         raceWon = false;
-        countdownTimer = countdownTime;
     }
 
     public override void Update(GameManagerStateInput stateInput)
     {
         if (raceWon) {
-            character.ChangeState<GameManagerScoreState>();
+            character.ChangeState<GameManagerBeginState>();
+            if (stateInput.currentRun > stateInput.runNum) {
+                stateInput.winCanvas.SetActive(true);
+            }
         }
     }
 
     public override void ForceCleanUp(GameManagerStateInput stateInput)
     {
+        stateInput.gameManagerController.spawnHazards();
+        stateInput.gameManagerController.respawnPlayer();
         base.ForceCleanUp(stateInput);
     }
 }

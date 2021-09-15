@@ -17,6 +17,7 @@ public class PlayerManager : Character<PlayerManager, PlayerState, PlayerStateIn
         stateInput.stateChanged = false;
         stateInput.player = ReInput.players.GetPlayer(0);
         stateInput.playerController.player = stateInput.player;
+        stateInput.gameManager = FindObjectOfType<GameManager>();
     }
 
     override protected void SetInitialState()
@@ -52,4 +53,6 @@ public class PlayerStateInput : CharacterStateInput
     public int lastXDir;
     public Player player;
     public PlayerManager stateMachine;
+
+    public GameManager gameManager;
 }
