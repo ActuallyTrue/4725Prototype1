@@ -153,7 +153,6 @@ public class StatePlayerController : MonoBehaviour
     {
         moveInput = player.GetAxis2D("MoveHorizontal", "MoveVertical");
         if (rb != null) {
-            Debug.Log(moveInput.x);
             float xVelocity = CalculatePlayerVelocity(rb.velocity.x, moveInput, moveSpeed, velocityXSmoothing, accelerationTimeGrounded, accelerationTimeAirborne, isGrounded);
             rb.velocity = new Vector2(xVelocity, rb.velocity.y);
         }
